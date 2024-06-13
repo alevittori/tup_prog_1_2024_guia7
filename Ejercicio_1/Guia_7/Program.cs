@@ -69,10 +69,18 @@ namespace Guia_7
 
         static void registrarAcceso()
         {
+            int op;
             do// verificamos que elija opcion correcta
             {
                 
                 mostrarMenuRegistro();
+                op =int.Parse(Console.ReadLine());
+                if(op <= 0 && op < 3)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Por favor, ingrese una opcion valida ");
 
 
             }while (true);
