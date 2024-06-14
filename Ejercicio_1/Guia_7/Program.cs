@@ -42,18 +42,33 @@ namespace Guia_7
 
 
         #region Mis Metodos
-
+        //limpia pantalla
+        static void limpiarPantalla()
+        {
+            Console.Clear();
+        }
+        //Menu principal
         static void mostrarMenuPrincipal()
         {
-            Console.Clear();
+            limpiarPantalla();
             Console.WriteLine("Menu Principal \n \r 1- Verificar Acceso \n \r 2- Imprimir Recaudacion \n \r 3- Mostrar cantidad de Accesos \n \r otro- Salir");
         }
+        //Menu Registro
         static void mostrarMenuRegistro()
         {
-            Console.Clear();
+            limpiarPantalla();
             Console.WriteLine("Menu Registro \n\r 1- Validar Ticket \n\r 2- Generar Ticket \n\r 0- Menu Principal");
         }
-            static void verificarOpcion(int opcion)
+        
+        //Valida ticket (PROTOTIPO)
+        static bool validatick(int numTicket)
+        {
+            if (numTicket > 0) { return true; }
+
+            return false;    
+            
+        }
+        static void verificarOpcion(int opcion)
         {
             switch (opcion) {
                 case 1: //verificar acceso
@@ -73,9 +88,9 @@ namespace Guia_7
             do// verificamos que elija opcion correcta
             {
                 
-                mostrarMenuRegistro();
+                mostrarMenuRegistro();//"Menu Registro \n\r 1- Validar Ticket \n\r 2- Generar Ticket \n\r 0- Menu Principal"
                 op =int.Parse(Console.ReadLine());
-                if(op <= 0 && op < 3)
+                if(op >= 0 && op < 3)
                 {
                     break;
                 }
@@ -85,7 +100,36 @@ namespace Guia_7
 
             }while (true);
 
+            while(true)
+            {
+                switch (op)
+                {
+                    case 1:
+                        //validamos ticket
+                        Console.WriteLine("Ingrese numero de tickte");
+                        int numTicket = int.Parse(Console.ReadLine());
+                        if (validatick(numTicket))
+                        {
+                            Console.WriteLine("Ticket valido, permitir acceso");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Tick NO valido, Generar ticket");
+                        }
+                        Console.ReadKey();
+                        limpiarPantalla();
 
+                        break;
+                    case 2:
+                        //generamos nuevo tickt
+                        break;
+                    case 0:
+                        return;
+                        //break; //volvemos al menu principal
+                }
+
+
+            }
         }
 
         #endregion
