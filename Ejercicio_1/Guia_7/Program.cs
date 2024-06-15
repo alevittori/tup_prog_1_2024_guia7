@@ -31,12 +31,17 @@ namespace Guia_7
 
 
             */
-#endregion
+        #endregion
 
 
 
         #region Mis variables
-
+        int[] tipoVehiculo = { 0, 1, 2, 3, 4, 5 };
+        string[] listaVehiculos = { "A pie", "Motocicleta","Automovil", "Camioneta", "Bugy", "Nautico" };
+        double[] listaPrecios = { 100, 800, 1000, 1500, 5000, 1200 };
+        double[] listaPorcentajeDias = { 1, 1.2, 2.20, 3.20, 3.80 };
+        double IVA = 0.21;
+        double impEco = 0.15;
 
         #endregion
 
@@ -85,51 +90,52 @@ namespace Guia_7
         static void registrarAcceso()
         {
             int op;
-            do// verificamos que elija opcion correcta
+            bool control = true;
+            while(control)
             {
+                do// verificamos que elija opcion correcta
+                {
                 
-                mostrarMenuRegistro();//"Menu Registro \n\r 1- Validar Ticket \n\r 2- Generar Ticket \n\r 0- Menu Principal"
-                op =int.Parse(Console.ReadLine());
-                if(op >= 0 && op < 3)
-                {
-                    break;
-                }
-
-                Console.WriteLine("Por favor, ingrese una opcion valida ");
-
-
-            }while (true);
-
-            while(true)
-            {
-                switch (op)
-                {
-                    case 1:
-                        //validamos ticket
-                        Console.WriteLine("Ingrese numero de tickte");
-                        int numTicket = int.Parse(Console.ReadLine());
-                        if (validatick(numTicket))
-                        {
-                            Console.WriteLine("Ticket valido, permitir acceso");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Tick NO valido, Generar ticket");
-                        }
-                        Console.ReadKey();
-                        limpiarPantalla();
-
+                    mostrarMenuRegistro();//"Menu Registro \n\r 1- Validar Ticket \n\r 2- Generar Ticket \n\r 0- Menu Principal"
+                    op =int.Parse(Console.ReadLine());
+                    if(op >= 0 && op < 3)
+                    {
                         break;
-                    case 2:
-                        //generamos nuevo tickt
-                        break;
-                    case 0:
-                        return;
-                        //break; //volvemos al menu principal
-                }
+                    }
+
+                    Console.WriteLine("Por favor, ingrese una opcion valida ");
 
 
-            }
+                }while (true);
+
+                    switch (op)
+                    {
+                        case 1:
+                            //validamos ticket
+                            Console.WriteLine("Ingrese numero de tickte");
+                            int numTicket = int.Parse(Console.ReadLine());
+                            if (validatick(numTicket))
+                            {
+                                Console.WriteLine("Ticket valido, permitir acceso");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Tick NO valido, Generar ticket");
+                            }
+                            Console.ReadKey();
+                            limpiarPantalla();
+
+                            break;
+                        case 2:
+                            //generamos nuevo tickt
+                            break;
+                        case 0:
+                            control = false;
+                            break; //volvemos al menu principal
+                    }
+
+
+            }//FIN REGISTRAR ACCESO
         }
 
         #endregion
